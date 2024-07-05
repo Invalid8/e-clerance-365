@@ -1,0 +1,30 @@
+import { authFetch } from "@/app/actions";
+import { UserType } from "@/types";
+
+type Result = {
+  success: boolean;
+  message: string;
+  status?: string;
+  data?: any;
+};
+
+export async function getProfile(): Promise<Result> {
+  try {
+    const { data, message } = await authFetch<{
+      data: UserType;
+      message: string;
+      statusType: number;
+    }>(`/user/profile`);
+
+    return {
+      success: true,
+      data: data,
+      message: message,
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error?.message || "An error occured",
+    };
+  }
+}
