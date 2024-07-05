@@ -3,7 +3,7 @@
 export default function NYSCIndex() {
   return (
     <div>
-      <h1>NYSCs</h1>
+      <h1>NYSC Dashboard</h1>
     </div>
   );
 }

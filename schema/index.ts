@@ -39,7 +39,7 @@ export const EmailSchema = z
   .email({ message: "Please enter a valid email address" });
 
 export const PasswordLengthSchema = createSchema(
-  (value) => value.length >= 8,
+  (value) => value.length >= 6,
   "Password must be at least 8 characters long."
 );
 
