@@ -1,15 +1,4 @@
-export type UserType = {
-  id: string;
-  role: RoleType;
-  firstname: string;
-  lastname: string;
-  telephone: string;
-  email: string;
-  gender: "Male" | "Female";
-  date_created?: string;
-  image?: string;
-  accessToken?: string;
-};
+export type UserType = StudentType | InstitutionType | NYSCType;
 
 export type StudentType = {
   tag_id?: string;

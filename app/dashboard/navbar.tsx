@@ -38,12 +38,12 @@ const NavBar = ({
         )}
       >
         <SearchInput />
-        <DropdownMenu>
+        {/* <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="p-1 w-fit md:py-6 gap-2 flex items-center font-semibold h-fit hover:bg-transparent hover:opacity-80 outline-none">
               <span className="flex flex-col items-end">
                 <span className="capitalize font-medium text-[16px]">
-                  Hi, {user?.firstname}
+                  Hi, {user?.firstname || user?.name}
                 </span>
                 <span className="text-primary0 text-xs font-normal">
                   {user?.email}
@@ -80,7 +80,7 @@ const NavBar = ({
               Logout
             </DropdownMenuItem>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
     </div>
   );
