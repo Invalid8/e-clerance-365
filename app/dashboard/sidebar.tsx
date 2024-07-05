@@ -71,7 +71,7 @@ const SideBar = ({
                 <div className="links--box flex flex-col gap-3">
                   {s.links.map((l: LinkType) => {
                     return (
-                      l.accessRoles.includes(user?.role || "USER") && (
+                      l.accessRoles.includes(user?.role || "student") && (
                         <Rt
                           key={l.to}
                           btnFunc={l.func}
