@@ -119,7 +119,7 @@ export default function StudentIndex() {
   ]);
 
   return (
-    <div className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0">
+    <div className="grid flex-1 items-start gap-4 p-2 sm:p-4 md:px-6 sm:py-0">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader>
@@ -199,7 +199,7 @@ export default function StudentIndex() {
           </CardHeader>
           <CardContent>
             <form
-              className="grid sm:grid-cols-2 grid-cols-1 gap-4"
+              className="flex flex-col sm:grid grid-cols-2 gap-4"
               onSubmit={handleProfileUpdate}
             >
               <div className="grid gap-1">

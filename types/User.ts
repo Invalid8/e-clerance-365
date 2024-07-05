@@ -17,6 +17,7 @@ export type StudentType = {
   verified: false;
   date_created?: string;
   image?: string;
+  nysc_cleared?: boolean;
   accessToken?: string;
 };
 
