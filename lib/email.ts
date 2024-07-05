@@ -5,13 +5,13 @@ const OAuth2 = google.auth.OAuth2;
 
 const createTransporter = async () => {
   const oauth2Client = new OAuth2(
-    process.env.GMAIL_CLIENT_ID,
-    process.env.GMAIL_CLIENT_SECRET,
+    process.env.OAUTH_CLIENT_ID,
+    process.env.OAUTH_CLIENT_SECRET,
     "https://developers.google.com/oauthplayground"
   );
 
   oauth2Client.setCredentials({
-    refresh_token: process.env.GMAIL_REFRESH_TOKEN,
+    refresh_token: process.env.OAUTH_REFRESH_TOKEN,
   });
 
   const accessToken = await new Promise<string>((resolve, reject) => {
@@ -27,11 +27,11 @@ const createTransporter = async () => {
     service: "gmail",
     auth: {
       type: "OAuth2",
-      user: process.env.GMAIL_USER,
+      user: process.env.OAUTH_USER,
       accessToken,
-      clientId: process.env.GMAIL_CLIENT_ID,
-      clientSecret: process.env.GMAIL_CLIENT_SECRET,
-      refreshToken: process.env.GMAIL_REFRESH_TOKEN,
+      clientId: process.env.OAUTH_CLIENT_ID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
     },
   });
 
@@ -42,7 +42,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const transporter = await createTransporter();
 
   const mailOptions = {
-    from: `Your App Name <${process.env.GMAIL_USER}>`,
+    from: `E-Clerance360 <${process.env.OAUTH_USER}>`,
     to: email,
     subject: "Verify your email",
     html: `<p>Please verify your email by clicking the link: <a href="${process.env.NEXT_PUBLIC_BASE_URL}/verify?token=${token}">Verify Email</a></p>`,

@@ -102,7 +102,6 @@ export default function LoginForm() {
                 labelPlacement="outside"
                 placeholder="Select login type"
                 radius="none"
-                selectedKeys={loginAs && [loginAs]}
                 size="lg"
                 variant="bordered"
                 onChange={(e) => setLoginAs(e.target.value)}
