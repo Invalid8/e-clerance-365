@@ -1,28 +1,22 @@
 import jwt from "jsonwebtoken";
 
-const secret = process.env.JWT_SECRET || "";
+const SECRET_KEY = process.env.JWT_SECRET_KEY || "your-secret-key";
+const EXPIRES_IN = "1h"; // Token expires in 1 hour
 
-export const generateToken = (user: {
-  id: string;
-  email: string;
-  role: string;
-}): string => {
-  const payload = {
-    id: user.id,
-    email: user.email,
-    role: user.role,
-  };
-  return jwt.sign(payload, process.env.JWT_SECRET || "", { expiresIn: "1d" });
-};
+export function generateToken(payload: object): string {
+  return jwt.sign(payload, SECRET_KEY, { expiresIn: EXPIRES_IN });
+}
 
-export function verifyToken(token: string) {
+export function verifyToken(token: string): object | null {
   try {
-    return jwt.verify(token, secret);
+    return jwt.verify(token, SECRET_KEY) as object;
   } catch (error) {
+    console.error("JWT verification error:", error);
     return null;
   }
 }
 
-export const generateVerificationToken = (email: string): string => {
-  return jwt.sign({ email }, process.env.JWT_SECRET || "", { expiresIn: "1d" });
-};
+export function generateVerificationToken(email: string): string {
+  const payload = { email };
+  return generateToken(payload);
+}

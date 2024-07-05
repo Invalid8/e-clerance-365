@@ -43,7 +43,7 @@ export async function GET(
         user = await supabase
           .from("students")
           .select(
-            "id, firstname, lastname, email, gender, department, faculty, DOB, session_in, session_out, role, verified, tagId"
+            "id, firstname, lastname, email, gender, department, faculty, dob, session_in, session_out, role, verified, tagId"
           )
           .eq("id", id)
           .single();

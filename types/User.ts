@@ -12,14 +12,14 @@ export type UserType = {
 };
 
 export type StudentType = {
-  tagId?: string;
+  tag_id?: string;
   id: string;
   role: "student";
   firstname: string;
   lastname: string;
   department: string;
   faculty: string;
-  DOB: string;
+  dob: string;
   session_in: string;
   session_out: string;
   telephone: string;

@@ -66,18 +66,31 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
         gender,
         department,
         faculty,
-        DOB,
+        dob: DOB,
         password: hashedPassword,
         session_in: sessionIn,
         session_out: sessionOut,
         verified: false,
-        tagId: null,
+        tag_id: null,
         role: "student",
         verification_token: verificationToken,
       })
+      .select() // Use select to get data after insertion
       .single();
 
     if (error) {
+      // Check for unique constraint violation
+      if (error.code === "23505") {
+        // PostgreSQL unique constraint violation code
+        return NextResponse.json(
+          {
+            message: "A user with this email or phone number already exists",
+            statusCode: 409,
+          },
+          { status: 409 }
+        );
+      }
+
       throw error;
     }
 
@@ -98,12 +111,12 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
             gender: user.gender,
             department: user.department,
             faculty: user.faculty,
-            DOB: user.DOB,
+            dob: user.dob,
             session_in: user.session_in,
             session_out: user.session_out,
             verified: user.verified,
             role: user.role,
-            tagId: user.tagId,
+            tag_id: user.tag_id,
           },
         },
         message:

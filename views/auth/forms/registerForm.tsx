@@ -107,7 +107,7 @@ const RegisterForm: React.FC = () => {
       firstname: name.split(" ")[0],
       lastname: name.split(" ")[1],
       email: email,
-      telephone: phone,
+      phone: phone,
       gender: gender,
       department: department,
       faculty: faculty,

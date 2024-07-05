@@ -124,7 +124,14 @@ export async function POST(
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
+    if (error.code === "PGRST100") {
+      // Adjust this error code based on the actual error code from supabase
+      return NextResponse.json(
+        { message: "User already exists", statusCode: 409 },
+        { status: 409 }
+      );
+    }
     console.error(error);
     return NextResponse.json(
       { message: "Internal server error", statusCode: 500 },
