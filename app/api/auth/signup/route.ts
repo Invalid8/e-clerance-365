@@ -18,7 +18,7 @@ type Response = {
   statusCode: number;
 };
 
-export default async function POST(
+export async function POST(
   req: NextApiRequest,
   res: NextApiResponse<Response>
 ) {
