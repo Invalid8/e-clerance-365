@@ -103,6 +103,7 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
             session_out: user.session_out,
             verified: user.verified,
             role: user.role,
+            tagId: user.tagId,
           },
         },
         message:

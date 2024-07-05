@@ -43,7 +43,7 @@ export async function GET(
         user = await supabase
           .from("students")
           .select(
-            "id, firstname, lastname, email, gender, department, faculty, DOB, session_in, session_out, role, verified"
+            "id, firstname, lastname, email, gender, department, faculty, DOB, session_in, session_out, role, verified, tagId"
           )
           .eq("id", id)
           .single();
@@ -51,14 +51,14 @@ export async function GET(
       case "institution":
         user = await supabase
           .from("institutions")
-          .select("id, name, email, address, contact_number, role, verified")
+          .select("id, name, email, address, contact_number, role")
           .eq("id", id)
           .single();
         break;
       case "nysc":
         user = await supabase
           .from("nysc")
-          .select("id, name, email, contact_number, role, verified")
+          .select("id, name, email, contact_number, role")
           .eq("id", id)
           .single();
         break;

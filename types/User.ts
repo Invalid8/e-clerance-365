@@ -12,6 +12,7 @@ export type UserType = {
 };
 
 export type StudentType = {
+  tagId?: string;
   id: string;
   role: "student";
   firstname: string;
