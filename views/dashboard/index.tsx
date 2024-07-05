@@ -7,7 +7,7 @@ import SchoolIndex from "./schoolIndex";
 import NYSCIndex from "./nyscIndex";
 
 export default function Dashboard() {
-  const [role] = useLocalStorage<RoleType>("role", "student");
+  const [role] = useLocalStorage<RoleType | undefined>("role", undefined);
 
   return (
     <>

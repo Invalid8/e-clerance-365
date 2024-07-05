@@ -9,7 +9,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { ClockIcon, CircleCheckIcon } from "lucide-react";
+import { ClockIcon, CircleCheckIcon, DownloadIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -349,6 +349,16 @@ export default function StudentIndex() {
               <div className="flex items-center justify-between">
                 <div className="text-4xl font-bold">{cgpa}</div>
               </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="flex flex-col items-center justify-center gap-2 p-4">
+              <DownloadIcon className="h-8 w-8" />
+              <div className="text-xl font-semibold">Download Clearance</div>
+              <div className="text-sm text-muted-foreground">
+                Download your e-clearance certificate.
+              </div>
+              <Button size="sm">Download</Button>
             </CardContent>
           </Card>
         </div>
