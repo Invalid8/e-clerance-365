@@ -15,8 +15,8 @@ export default function Template({ children }: { children: ReactElement }) {
       const { success, data: user } = await getProfile();
 
       if (!success) {
-        setRole("");
-        await signOut({ redirect: true });
+        // setRole("");
+        // await signOut({ redirect: true });
       }
 
       setRole(user?.role);

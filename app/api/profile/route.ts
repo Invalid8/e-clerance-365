@@ -30,6 +30,8 @@ export async function GET(
   try {
     const decoded = verifyToken(token);
 
+    console.log(decoded);
+
     if (
       !decoded ||
       typeof decoded === "string" ||
@@ -48,7 +50,7 @@ export async function GET(
         user = await supabase
           .from("students")
           .select(
-            "id, firstname, lastname, email, gender, department, faculty, dob, session_in, session_out, role, verified, tagId"
+            "id, firstname, lastname, email, gender, department, faculty, dob, session_in, session_out, role, verified, tag_id"
           )
           .eq("id", id)
           .single();
@@ -75,6 +77,7 @@ export async function GET(
     }
 
     if (!user?.data) {
+      console.log(user.error);
       return NextResponse.json(
         { message: "User not found", statusCode: 404 },
         { status: 404 }

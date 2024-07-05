@@ -1,8 +1,7 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-
 import { authOptions } from "@/lib";
+import { getServerSession } from "next-auth";
 
 type Options = {
   method: "GET" | "DELETE" | "POST" | "PUT" | "PATCH";
@@ -34,16 +33,15 @@ export default async function authFetch<T>(
       body: body,
     });
 
-    const data = await res.json();
-
-    if (![200, 204, 201].includes(data?.statusCode)) {
+    if (!res.ok) {
+      const data = await res?.json();
       throw new Error(data?.message || "An Error Occurred");
     }
 
     if (returnType === "blob") {
       return res as T;
     } else {
-      return data;
+      return await res?.json();
     }
   } catch (error: any) {
     throw new Error(error?.message);

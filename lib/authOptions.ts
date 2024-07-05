@@ -117,6 +117,7 @@ const authOptions = {
   pages: {
     signIn: "/auth/login",
     signUp: "/auth/signup",
+    error: "/error"
   },
   debug: process.env.NODE_ENV === "development",
 };
