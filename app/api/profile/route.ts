@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { verify } from "jsonwebtoken";
+import { verifyToken } from "@/lib/jwt";
 import { NextRequest, NextResponse } from "next/server";
 import { StudentType, InstitutionType, NYSCType } from "@/types";
 
@@ -28,9 +28,14 @@ export async function GET(
   }
 
   try {
-    const decoded = verify(token, process.env.JWT_SECRET || "");
+    const decoded = verifyToken(token);
 
-    if (typeof decoded === "string" || !("id" in decoded)) {
+    if (
+      !decoded ||
+      typeof decoded === "string" ||
+      !("id" in decoded) ||
+      !("role" in decoded)
+    ) {
       throw new Error("Invalid token payload");
     }
 

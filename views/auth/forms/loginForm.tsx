@@ -117,7 +117,7 @@ export default function LoginForm() {
                 </SelectItem>
               </Select>
               <FormField
-                errorMessage={"Input your username"}
+                errorMessage={"Input your email"}
                 htmlFor="id"
                 id="id"
                 isInvalid={!id}
