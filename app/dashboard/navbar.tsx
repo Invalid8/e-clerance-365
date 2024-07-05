@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const NavBar = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   menuIsOpen,
   setMenuIsOpen,
   user,
