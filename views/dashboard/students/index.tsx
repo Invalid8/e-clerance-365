@@ -32,13 +32,13 @@ export default function Students({ mini }: { mini?: boolean }) {
 
   return (
     <SectionWrap>
-      {!mini && <SectionTitle>All Emails</SectionTitle>}
+      {!mini && <SectionTitle>All Students</SectionTitle>}
       {mini && (
         <div className="flex gap-4 justify-between items-end">
-          <SectionSubTitle>Emails</SectionSubTitle>
+          <SectionSubTitle>Students</SectionSubTitle>
           <Link
             className="underline underline-offset-1"
-            href={"/dashboard/email"}
+            href={"/dashboard/students"}
           >
             See more
           </Link>
