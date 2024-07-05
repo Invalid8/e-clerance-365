@@ -43,10 +43,10 @@ const NavBar = ({
             <button className="p-1 w-fit md:py-6 gap-2 flex items-center font-semibold h-fit hover:bg-transparent hover:opacity-80 outline-none">
               <span className="flex flex-col items-end">
                 <span className="capitalize font-medium text-[16px]">
-                  Hi, {user?.username}
+                  Hi, {user?.firstname}
                 </span>
                 <span className="text-primary0 text-xs font-normal">
-                  {user?.email_address}
+                  {user?.email}
                 </span>
               </span>
               <User
