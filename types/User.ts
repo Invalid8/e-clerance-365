@@ -30,4 +30,23 @@ export type StudentType = {
   accessToken?: string;
 };
 
+export type InstitutionType = {
+  id: string;
+  name: string;
+  email: string;
+  address: string;
+  contact_number: string;
+  verified: boolean;
+  role: "institution";
+};
+
+export type NYSCType = {
+  id: string;
+  name: string;
+  email: string;
+  contact_number: string;
+  verified: boolean;
+  role: "nysc";
+};
+
 export type RoleType = "student" | "institution" | "nysc";

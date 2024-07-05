@@ -13,8 +13,8 @@ const Register = () => {
 
   const authSwitch = (hash: string): JSX.Element => {
     switch (hash) {
-      case "#verify":
-        return <Verify />;
+      // case "#verify":
+      //   return <Verify />;
 
       default:
         return <RegisterForm />;

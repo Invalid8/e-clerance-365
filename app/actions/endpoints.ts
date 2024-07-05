@@ -1,5 +1,5 @@
 import { authFetch } from "@/app/actions";
-import { UserType } from "@/types";
+import { InstitutionType, NYSCType, StudentType, UserType } from "@/types";
 
 type Result = {
   success: boolean;
@@ -11,10 +11,10 @@ type Result = {
 export async function getProfile(): Promise<Result> {
   try {
     const { data, message } = await authFetch<{
-      data: UserType;
+      data: StudentType | InstitutionType | NYSCType;
       message: string;
       statusType: number;
-    }>(`/user/profile`);
+    }>(`/profile`);
 
     return {
       success: true,

@@ -15,8 +15,8 @@ const Login = () => {
     switch (hash) {
       case "#recover":
         return <Recover />;
-      case "#verify":
-        return <Verify />;
+      // case "#verify":
+      //   return <Verify />;
       case "#change_password":
         return <ChangePassword />;
 

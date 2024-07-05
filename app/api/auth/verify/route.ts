@@ -1,7 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import { hash } from "bcryptjs";
-import { generateVerificationToken } from "@/lib/jwt";
-import { sendVerificationEmail } from "@/lib/email";
+import { verify } from "jsonwebtoken";
+import { generateToken } from "@/lib/jwt";
 import { StudentType } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -13,82 +12,59 @@ const supabase = createClient(
 type FetchResponse = {
   message: string;
   data?: {
+    token: string;
     user: StudentType;
   };
   statusCode: number;
 };
 
 export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
-  const {
-    firstname,
-    lastname,
-    email,
-    phone,
-    gender,
-    department,
-    faculty,
-    DOB,
-    password,
-    sessionIn,
-    sessionOut,
-  } = await req.json();
+  const { token } = await req.json();
 
-  if (
-    !firstname ||
-    !lastname ||
-    !email ||
-    !phone ||
-    !gender ||
-    !department ||
-    !faculty ||
-    !DOB ||
-    !password ||
-    !sessionIn ||
-    !sessionOut
-  ) {
+  if (!token || typeof token !== "string") {
     return NextResponse.json(
-      { message: "All fields are required", statusCode: 400 },
+      { message: "Token is required", statusCode: 400 },
       { status: 400 }
     );
   }
 
   try {
-    const hashedPassword = await hash(password, 10);
-    const verificationToken = generateVerificationToken(email);
+    const decoded = verify(token, process.env.JWT_SECRET || "");
+
+    if (typeof decoded === "string" || !("email" in decoded)) {
+      throw new Error("Invalid token payload");
+    }
+
+    const { email } = decoded;
 
     const { data, error } = await supabase
       .from("students")
-      .insert({
-        firstname,
-        lastname,
-        email,
-        telephone: phone,
-        gender,
-        department,
-        faculty,
-        DOB,
-        password: hashedPassword,
-        session_in: sessionIn,
-        session_out: sessionOut,
-        verified: false,
-        tagId: null,
-        role: "student",
-        verification_token: verificationToken,
-      })
+      .update({ verified: true })
+      .eq("email", email)
       .single();
 
     if (error) {
       throw error;
     }
 
-    const user: StudentType = data;
+    if (!data) {
+      return NextResponse.json(
+        { message: "User not found", statusCode: 404 },
+        { status: 404 }
+      );
+    }
 
-    // Send verification email
-    await sendVerificationEmail(email, verificationToken);
+    const user: StudentType = data;
+    const authToken = generateToken({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    });
 
     return NextResponse.json(
       {
         data: {
+          token: authToken,
           user: {
             id: user.id,
             firstname: user.firstname,
@@ -105,11 +81,10 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
             role: user.role,
           },
         },
-        message:
-          "User signed up successfully. Please check your email to verify your account.",
-        statusCode: 201,
+        message: "Account verified successfully",
+        statusCode: 200,
       },
-      { status: 201 }
+      { status: 200 }
     );
   } catch (error) {
     console.error(error);
