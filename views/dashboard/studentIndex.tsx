@@ -199,7 +199,7 @@ export default function StudentIndex() {
           </CardHeader>
           <CardContent>
             <form
-              className="grid grid-cols-2 gap-4"
+              className="grid sm:grid-cols-2 grid-cols-1 gap-4"
               onSubmit={handleProfileUpdate}
             >
               <div className="grid gap-1">
@@ -314,7 +314,7 @@ export default function StudentIndex() {
               <CardTitle>Grades</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
                 <div className="grid gap-1">
                   <Label>Semester 1</Label>
                   <Input defaultValue="4.0" disabled={true} readOnly={true} />

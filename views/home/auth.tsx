@@ -7,9 +7,9 @@ import Link from "next/link";
 export default function HomeAuth() {
   return (
     <main className="flex-1">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-primary to-primary/90">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
         <div className="container px-4 md:px-6 grid gap-6 lg:grid-cols-2 lg:gap-12">
-          <div className="flex flex-col justify-center space-y-4 text-primary-foreground">
+          <div className="flex flex-col justify-center space-y-4">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
               Welcome to Your Dashboard
             </h1>
@@ -65,24 +65,24 @@ export default function HomeAuth() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Clearance Status
             </h2>
-            <p className="max-w-[600px] text-muted-foreground">
+            <p className="max-w-[600px] ">
               Track the status of your NYSC clearance process. Stay informed and
               up-to-date on the progress.
             </p>
             <div className="grid gap-4">
-              <div className="flex items-center justify-between bg-background p-4 rounded-lg">
+              <div className="flex items-center justify-between bg-primary text-primary-foreground p-4 rounded-lg">
                 <div>
                   <h3 className="text-lg font-bold">Document Verification</h3>
-                  <p className="text-muted-foreground">
+                  <p className="">
                     Your documents are currently being verified.
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                  <span className="text-muted-foreground">In Progress</span>
+                  <span className="">In Progress</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between bg-background p-4 rounded-lg">
+              <div className="flex items-center justify-between bg-primary text-primary-foreground p-4 rounded-lg">
                 <div>
                   <h3 className="text-lg font-bold">Clearance Approval</h3>
                   <p className="text-muted-foreground">
@@ -94,7 +94,7 @@ export default function HomeAuth() {
                   <span className="text-muted-foreground">In Progress</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between bg-background p-4 rounded-lg">
+              <div className="flex items-center justify-between bg-primary text-primary-foreground p-4 rounded-lg">
                 <div>
                   <h3 className="text-lg font-bold">Clearance Completed</h3>
                   <p className="text-muted-foreground">
@@ -139,7 +139,7 @@ export default function HomeAuth() {
               related to your NYSC clearance.
             </p>
             <div className="grid gap-4">
-              <div className="flex items-center justify-between bg-background p-4 rounded-lg">
+              <div className="flex items-center justify-between bg-primary text-primary-foreground p-4 rounded-lg">
                 <div>
                   <h3 className="text-lg font-bold">Document Verification</h3>
                   <p className="text-muted-foreground">
@@ -148,7 +148,7 @@ export default function HomeAuth() {
                 </div>
                 <div className="text-xs text-muted-foreground">2 days ago</div>
               </div>
-              <div className="flex items-center justify-between bg-background p-4 rounded-lg">
+              <div className="flex items-center justify-between bg-primary text-primary-foreground p-4 rounded-lg">
                 <div>
                   <h3 className="text-lg font-bold">Clearance Approval</h3>
                   <p className="text-muted-foreground">
@@ -157,7 +157,7 @@ export default function HomeAuth() {
                 </div>
                 <div className="text-xs text-muted-foreground">1 week ago</div>
               </div>
-              <div className="flex items-center justify-between bg-background p-4 rounded-lg">
+              <div className="flex items-center justify-between bg-primary text-primary-foreground p-4 rounded-lg">
                 <div>
                   <h3 className="text-lg font-bold">Clearance Certificate</h3>
                   <p className="text-muted-foreground">

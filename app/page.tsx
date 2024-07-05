@@ -1,7 +1,5 @@
 "use client";
 
-import { BriefcaseIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { signOut, useSession } from "next-auth/react";
@@ -16,7 +14,6 @@ export default function Page() {
     <div className="flex flex-col min-h-[100dvh]">
       <header className="bg-background px-4 lg:px-6 h-16 flex items-center justify-between bg-white text-black">
         <Link href="/" className="flex items-center">
-          <BriefcaseIcon className="h-6 w-6 text-primary" />
           <span className="ml-2 text-lg font-bold">E-Clearance</span>
         </Link>
         <nav className="flex items-center gap-4 sm:gap-6">
