@@ -25,7 +25,7 @@ const authOptions = {
         if (!userTokenIn) {
           try {
             const userRes = await fetch(
-              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/signin`,
+              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`,
               {
                 method: "POST",
                 headers: {
@@ -117,7 +117,7 @@ const authOptions = {
   pages: {
     signIn: "/auth/login",
     signUp: "/auth/signup",
-    error: "/error"
+    error: "/error",
   },
   debug: process.env.NODE_ENV === "development",
 };

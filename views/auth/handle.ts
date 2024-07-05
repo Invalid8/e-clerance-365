@@ -12,7 +12,7 @@ interface Result {
 const handleSignUp = async (body: any): Promise<Result> => {
   try {
     const responsePromise = fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/signup`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register`,
       {
         method: "POST",
         headers: {
