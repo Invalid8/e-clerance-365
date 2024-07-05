@@ -106,15 +106,15 @@ const RegisterForm: React.FC = () => {
     const body = {
       firstname: name.split(" ")[0],
       lastname: name.split(" ")[1],
-      email,
+      email: email,
       telephone: phone,
-      gender,
-      department,
-      faculty,
-      DOB,
-      password,
-      sessionIn,
-      sessionOut,
+      gender: gender,
+      department: department,
+      faculty: faculty,
+      DOB: DOB.toString(),
+      password: password,
+      sessionIn: sessionIn.toString(),
+      sessionOut: sessionOut.toString(),
     };
 
     const { message, success } = await handleSignUp(body);
@@ -221,7 +221,7 @@ const RegisterForm: React.FC = () => {
                     <PhoneInput
                       forceDialCode
                       className="rounded-none"
-                      defaultCountry="ni"
+                      defaultCountry="nig"
                       hideDropdown={false}
                       inputClassName={cn(
                         "max-h-[46px] border-2 px-2 h-full min-h-[46px] bg-transparent h-[46px] w-full data-[hover=true]:border-idLink data-[has-start-content=true]:ps-3 group-data-[focus=true]:border-primary"
