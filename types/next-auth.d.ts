@@ -1,8 +1,8 @@
 import NextAuth from "next-auth/next";
-import { UserType } from "./User";
+import { StudentType, UserType, InstitutionType } from "@/types";
 
 declare module "next-auth" {
   interface Session {
-    user: UserType;
+    user: StudentType | InstitutionType | NYSCType;
   }
 }
