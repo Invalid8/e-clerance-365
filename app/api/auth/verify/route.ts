@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { verify } from "jsonwebtoken";
-import { generateToken } from "@/lib/jwt";
+import { generateToken, verifyToken } from "@/lib/jwt";
 import { StudentType } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -29,9 +29,9 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
   }
 
   try {
-    const decoded = verify(token, process.env.JWT_SECRET || "");
+    const decoded = verifyToken(token);
 
-    if (typeof decoded === "string" || !("email" in decoded)) {
+    if (!decoded || typeof decoded === "string" || !("email" in decoded)) {
       throw new Error("Invalid token payload");
     }
 
@@ -74,11 +74,12 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
             gender: user.gender,
             department: user.department,
             faculty: user.faculty,
-            DOB: user.DOB,
+            dob: user.dob,
             session_in: user.session_in,
             session_out: user.session_out,
             verified: user.verified,
             role: user.role,
+            tag_id: user.tag_id,
           },
         },
         message: "Account verified successfully",
