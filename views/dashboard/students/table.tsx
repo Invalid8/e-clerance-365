@@ -174,18 +174,20 @@ export const columns: ColumnDef<StudentType>[] = [
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => {
-      return (
-        <div className="capitalize">
-          {row.getValue("firstname")} {row.getValue("lastname")}
-        </div>
+      const name = "".concat(
+        row.getValue("firstname"),
+        row.getValue("lastname")
       );
+      return <div className="capitalize">{name}</div>;
     },
   },
   {
     accessorKey: "tag",
     header: "Tag",
     cell: ({ row }) => {
-      return <div className="capitalize">{row.getValue("tag_id")}</div>;
+      return (
+        <div className="capitalize">{row.getValue("tag_id") || "null"}</div>
+      );
     },
   },
   {
