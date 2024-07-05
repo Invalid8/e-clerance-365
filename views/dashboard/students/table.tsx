@@ -171,18 +171,21 @@ export default function StudentTable({
 
 export const columns: ColumnDef<StudentType>[] = [
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: "firstname",
+    header: "Firstname",
     cell: ({ row }) => {
-      const name = "".concat(
-        row.getValue("firstname"),
-        row.getValue("lastname")
-      );
-      return <div className="capitalize">{name}</div>;
+      return <div className="capitalize">{row.getValue("firstname")}</div>;
     },
   },
   {
-    accessorKey: "tag",
+    accessorKey: "lastname",
+    header: "Lastname",
+    cell: ({ row }) => {
+      return <div className="capitalize">{row.getValue("lastname")}</div>;
+    },
+  },
+  {
+    accessorKey: "tag_id",
     header: "Tag",
     cell: ({ row }) => {
       return (
@@ -198,7 +201,7 @@ export const columns: ColumnDef<StudentType>[] = [
     },
   },
   {
-    accessorKey: "phone",
+    accessorKey: "telephone",
     header: "Phone",
     cell: ({ row }) => {
       return <div>{row.getValue("telephone")}</div>;
@@ -219,7 +222,7 @@ export const columns: ColumnDef<StudentType>[] = [
     },
   },
   {
-    accessorKey: "status",
+    accessorKey: "nysc_cleared",
     header: "Status",
     cell: ({ row }) => {
       let color = "warning" as
