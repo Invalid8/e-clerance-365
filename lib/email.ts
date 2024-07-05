@@ -45,7 +45,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     from: `E-Clerance360 <${process.env.OAUTH_USER}>`,
     to: email,
     subject: "Verify your email",
-    html: `<p>Please verify your email by clicking the link: <a href="${process.env.NEXT_PUBLIC_BASE_URL}/verify?token=${token}">Verify Email</a></p>`,
+    html: `<p>Please verify your email by clicking the link: <a href="${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify?token=${token}">Verify Email</a></p>`,
   };
 
   await transporter.sendMail(mailOptions);

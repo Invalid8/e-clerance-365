@@ -1,13 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { showNotification } from "@/lib";
 import { signIn } from "next-auth/react";
 
 const VerifyPage = () => {
+  const search = useSearchParams();
+
   const router = useRouter();
-  const { token } = router.query;
+  const token = search.get("token");
+
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
