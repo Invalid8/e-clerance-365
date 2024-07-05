@@ -1,6 +1,5 @@
 import { Session, TokenSet, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
 import { destroyToken } from "@/lib";
 
 const authOptions = {
@@ -9,10 +8,10 @@ const authOptions = {
       id: "credentials",
       name: "credentials",
       credentials: {
-        id: {},
-        password: {},
-        userTokenIn: {},
-        loginAs: {},
+        id: { label: "ID", type: "text" },
+        password: { label: "Password", type: "password" },
+        userTokenIn: { label: "User Token", type: "text" },
+        loginAs: { label: "Login As", type: "text" },
       },
       async authorize(credentials) {
         const payload = {
@@ -26,7 +25,7 @@ const authOptions = {
         if (!userTokenIn) {
           try {
             const userRes = await fetch(
-              `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/signin`,
+              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/signin`,
               {
                 method: "POST",
                 headers: {
@@ -55,7 +54,7 @@ const authOptions = {
         if (userTokenIn) {
           try {
             const res = await fetch(
-              `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/profile`,
+              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/profile`,
               {
                 method: "GET",
                 headers: {
@@ -96,11 +95,9 @@ const authOptions = {
     }: {
       session: Session;
       token: TokenSet;
-      user: User;
       trigger: string;
     }) {
       if (trigger === "update" && session?.user) {
-        // Note, that `session` can be any arbitrary object, remember to validate it!
         token = session.user;
       }
 

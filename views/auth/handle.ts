@@ -69,7 +69,7 @@ const handleResetPassword = async (
 
   try {
     const responsePromise = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/reset-password`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/reset-password`,
       {
         method: "POST",
         headers: {
@@ -113,7 +113,7 @@ const handleResetPassword = async (
 const handleForgotPassword = async (email: string): Promise<Result> => {
   try {
     const responsePromise = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/otp/resend/${email}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/otp/resend/${email}`,
       {
         method: "PATCH",
         headers: {
@@ -154,7 +154,7 @@ const handleVerification = async (
 ): Promise<Result> => {
   try {
     const responsePromise = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/otp/verify?reset=${
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/otp/verify?reset=${
         verify_for === "password_reset"
       }`,
       {

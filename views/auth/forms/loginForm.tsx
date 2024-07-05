@@ -122,11 +122,11 @@ export default function LoginForm() {
                 htmlFor="id"
                 id="id"
                 isInvalid={!id}
-                label="Username"
-                placeholder=""
+                label="Email"
+                placeholder="Enter your email"
                 radius="none"
                 size="lg"
-                type="text"
+                type="email"
                 variant="bordered"
                 onChange={(e) => setId(e)}
               />
@@ -148,7 +148,7 @@ export default function LoginForm() {
                 Login
               </SubmitBtn>
             </div>
-            <div className="flex w-full justify-center">
+            {/* <div className="flex w-full justify-center">
               <div className="don flex gap-2 items-center font-hind">
                 <span>Forgot Password?</span>
                 <Link
@@ -158,7 +158,7 @@ export default function LoginForm() {
                   Recover
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>

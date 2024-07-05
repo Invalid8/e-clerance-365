@@ -14,7 +14,7 @@ export async function getProfile(): Promise<Result> {
       data: StudentType | InstitutionType | NYSCType;
       message: string;
       statusType: number;
-    }>(`/profile`);
+    }>(`/api/profile`);
 
     return {
       success: true,
