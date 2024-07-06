@@ -11,10 +11,12 @@ import {
 import StudentsTable from "./table";
 import { StudentType } from "@/types";
 import { getStudents } from "@/app/actions/endpoints";
+import useLocalStorage from "use-local-storage";
 
 export default function Students({ mini }: { mini?: boolean }) {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<StudentType[]>([]);
+  const [tableUpdate] = useLocalStorage<number>("tableUpdate", 0);
 
   useEffect(() => {
     async function getData() {
@@ -28,7 +30,7 @@ export default function Students({ mini }: { mini?: boolean }) {
     }
 
     getData();
-  }, []);
+  }, [tableUpdate]);
 
   return (
     <SectionWrap>

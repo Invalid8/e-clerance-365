@@ -30,8 +30,8 @@ export default function Page() {
                 radius="sm"
                 className="w-fit"
                 onChange={async () => {
-                  await signOut({ callbackUrl: "/", redirect: false });
-                  router.push("/auth/login");
+                  await signOut({ redirect: false });
+                  router.push("/");
                 }}
               >
                 Logout

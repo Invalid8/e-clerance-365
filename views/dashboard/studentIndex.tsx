@@ -38,6 +38,8 @@ export default function StudentIndex() {
 
   const profile: StudentType = session?.user;
 
+  console.log(profile);
+
   const [grades, setGrades] = useState<{ session: number; grade: number }[]>(
     []
   );

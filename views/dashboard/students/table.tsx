@@ -35,6 +35,8 @@ import {
 import { Input } from "@/components/ui/input";
 import useLocalStorage from "use-local-storage";
 import { RoleType, StudentType } from "@/types";
+import { toggleClear } from "@/app/actions/endpoints";
+import { showNotification } from "@/lib";
 
 export default function StudentTable({
   data,
@@ -252,6 +254,7 @@ export const columns: ColumnDef<StudentType>[] = [
 
 const Options = ({ row }: { row: StudentType }) => {
   const [role] = useLocalStorage<RoleType | undefined>("role", undefined);
+  const [, setTableUpdate] = useLocalStorage<number>("tableUpdate", 0);
 
   return (
     <div className="flex justify-end items-end">
@@ -274,15 +277,20 @@ const Options = ({ row }: { row: StudentType }) => {
           onAction={async (key) => {
             switch (key) {
               case "status":
-                // const { success: success2, message: message2 } =
-                //   await toggleLoanStatus(userDetails.loanId, userDetails.id);
+                const { success: success, message: message } =
+                  await toggleClear(row.id);
 
-                // if (!success2)
-                //   showNotification("error", "top-right", undefined, {
-                //     message: message2,
-                //   });
+                if (!success)
+                  showNotification(
+                    success ? "success" : "error",
+                    "top-right",
+                    undefined,
+                    {
+                      message,
+                    }
+                  );
 
-                // setTableUpdate(Date.now());
+                setTableUpdate(Date.now());
                 return;
               default:
                 return;
