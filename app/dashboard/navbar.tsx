@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const NavBar = ({
   menuIsOpen,
@@ -38,49 +39,9 @@ const NavBar = ({
         )}
       >
         <SearchInput />
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="p-1 w-fit md:py-6 gap-2 flex items-center font-semibold h-fit hover:bg-transparent hover:opacity-80 outline-none">
-              <span className="flex flex-col items-end">
-                <span className="capitalize font-medium text-[16px]">
-                  Hi, {user?.firstname || user?.name}
-                </span>
-                <span className="text-primary0 text-xs font-normal">
-                  {user?.email}
-                </span>
-              </span>
-              <User
-                avatarProps={{
-                  src: user?.image,
-                  size: "md",
-                }}
-                name={""}
-              />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href="/dashboard/profile" prefetch={false}>
-                Profile
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/dashboard/settings" prefetch={false}>
-                Settings
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={async () => {
-                await signOut();
-              }}
-            >
-              Logout
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
+        <Avatar>
+          <AvatarFallback>ED</AvatarFallback>
+        </Avatar>
       </div>
     </div>
   );

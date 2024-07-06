@@ -8,12 +8,8 @@ import {
   Dropdown,
   Switch,
   Chip,
-  Modal,
-  ModalBody,
-  useDisclosure,
-  ModalContent,
 } from "@nextui-org/react";
-import { MoreVertical, Edit, Trash, User } from "lucide-react";
+import { MoreVertical, Trash, User } from "lucide-react";
 import {
   getFilteredRowModel,
   getCoreRowModel,
@@ -37,7 +33,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { EditStudent } from "./form";
 import useLocalStorage from "use-local-storage";
 import { RoleType, StudentType } from "@/types";
 
@@ -256,8 +251,7 @@ export const columns: ColumnDef<StudentType>[] = [
 ];
 
 const Options = ({ row }: { row: StudentType }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [role] = useLocalStorage<RoleType>("role", "student");
+  const [role] = useLocalStorage<RoleType | undefined>("role", undefined);
 
   return (
     <div className="flex justify-end items-end">
@@ -279,10 +273,6 @@ const Options = ({ row }: { row: StudentType }) => {
           variant="faded"
           onAction={async (key) => {
             switch (key) {
-              case "edit":
-                onOpen();
-
-                return;
               case "status":
                 // const { success: success2, message: message2 } =
                 //   await toggleLoanStatus(userDetails.loanId, userDetails.id);
@@ -299,23 +289,30 @@ const Options = ({ row }: { row: StudentType }) => {
             }
           }}
         >
-          <DropdownItem
-            key="status"
-            description="Student status toggle"
-            textValue="status"
-          >
-            <div className="flex justify-between gap-2 items-center min-w-full w-full">
-              <span>Cleared</span>
-              <Switch
-                aria-label="nysc_cleared"
-                isSelected={row.nysc_cleared}
-                size="sm"
-              />
-            </div>
-          </DropdownItem>
+          {role === "nysc" ? (
+            <DropdownItem
+              key="status"
+              description="Student status toggle"
+              textValue="status"
+            >
+              <div className="flex justify-between gap-2 items-center min-w-full w-full">
+                <span>Cleared</span>
+                <Switch
+                  aria-label="nysc_cleared"
+                  isSelected={row.nysc_cleared}
+                  size="sm"
+                />
+              </div>
+            </DropdownItem>
+          ) : (
+            <DropdownItem></DropdownItem>
+          )}
+
           <DropdownItem
             key="view"
             description="Student profile"
+            as={Link}
+            href={"/dashboard/students/${row.id}"}
             startContent={
               <User
                 className={
@@ -325,55 +322,29 @@ const Options = ({ row }: { row: StudentType }) => {
             }
             textValue="view"
           >
-            View
+            View Profile
           </DropdownItem>
           {role === "institution" ? (
-            <>
-              <DropdownItem
-                key={"edit"}
-                description="Update student data"
-                startContent={
-                  <Edit
-                    className={
-                      "text-xl text-default-500 pointer-events-none flex-shrink-0"
-                    }
-                    color="blue"
-                  />
-                }
-                textValue="edit"
-              >
-                Update
-              </DropdownItem>
-              <DropdownItem
-                key="delete"
-                description="Remove student"
-                startContent={
-                  <Trash
-                    className={
-                      "text-xl text-default-500 pointer-events-none flex-shrink-0"
-                    }
-                    color="red"
-                  />
-                }
-                textValue="delete"
-              >
-                Delete
-              </DropdownItem>
-            </>
+            <DropdownItem
+              key="delete"
+              description="Remove student"
+              startContent={
+                <Trash
+                  className={
+                    "text-xl text-default-500 pointer-events-none flex-shrink-0"
+                  }
+                  color="red"
+                />
+              }
+              textValue="delete"
+            >
+              Delete
+            </DropdownItem>
           ) : (
             <DropdownItem></DropdownItem>
           )}
         </DropdownMenu>
       </Dropdown>
-      <Modal isOpen={isOpen} placement="center" onOpenChange={onOpenChange}>
-        <ModalContent>
-          {() => (
-            <ModalBody>
-              <EditStudent student={row} />
-            </ModalBody>
-          )}
-        </ModalContent>
-      </Modal>
     </div>
   );
 };
