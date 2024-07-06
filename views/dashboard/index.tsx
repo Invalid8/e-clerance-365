@@ -11,7 +11,7 @@ export default function Dashboard() {
   return (
     <>
       {role === "student" && <StudentIndex />}
-      {role !== "institution" && <Students />}
+      {role !== "student" && <Students />}
       {!role && <div className="divider">Pending...</div>}
     </>
   );

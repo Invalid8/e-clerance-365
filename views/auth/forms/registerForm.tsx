@@ -121,7 +121,7 @@ const RegisterForm: React.FC = () => {
 
     if (success) {
       showNotification("success", "top-right", undefined, {
-        message: "Sign Up Successfull ✨",
+        message: "Account Created Successfully ✨",
       });
       setMessage(message);
     } else {
