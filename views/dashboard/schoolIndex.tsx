@@ -3,7 +3,7 @@
 export default function SchoolIndex() {
   return (
     <div>
-      <h1>School Dashboard</h1>
+      <h1>Institution Dashboard</h1>
     </div>
   );
 }
