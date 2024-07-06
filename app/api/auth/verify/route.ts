@@ -37,7 +37,7 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
 
     const { email } = decoded;
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("students")
       .update({ verified: true })
       .eq("email", email)
@@ -46,6 +46,12 @@ export async function POST(req: NextRequest, res: NextResponse<FetchResponse>) {
     if (error) {
       throw error;
     }
+
+    const { data } = await supabase
+      .from("students")
+      .select("*")
+      .eq("email", email)
+      .single();
 
     if (!data) {
       return NextResponse.json(
